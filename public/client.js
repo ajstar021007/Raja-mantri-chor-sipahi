@@ -312,7 +312,7 @@ function drawTableCanvas() {
   const rect = canvas.parentElement.getBoundingClientRect();
   canvas.width = rect.width * window.devicePixelRatio;
   canvas.height = rect.height * window.devicePixelRatio;
-  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
   const w = rect.width;
   const h = rect.height;
