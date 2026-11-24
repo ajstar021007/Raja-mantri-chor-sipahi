@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100dvh; /* Fixes mobile browser address-bar height issues */
+  overflow-x: hidden; /* Prevents horizontal wobble from scaled animations */
+  -webkit-text-size-adjust: 100%; /* Prevents iOS from randomly inflating font sizes */
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #270e02; /* Fallback color while gradient loads */
+  background-image: radial-gradient(circle at top, #78350f 0%, #451a03 65%, #270e02 100%);
+  background-repeat: no-repeat;
+}
+
+.notebook-font {
+  font-family: 'Caveat', cursive;
+}
+
+/* Ruled Indian Khata / Notebook Paper Texture */
+.notebook-paper {
+  background-color: #fffdf5;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 31px,
+    #cbd5e1 31px,
+    #cbd5e1 32px
+  );
+  background-attachment: local; /* Keeps lines aligned with text when scrolling */
+  line-height: 32px;
+  padding: 0 16px; /* Prevents text from touching mobile screen edges */
+  word-wrap: break-word; /* Stops long words from breaking mobile width */
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  70% { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-bounce-in {
+  animation: bounceIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  will-change: transform, opacity; /* Smoother 60fps performance on mobile GPUs */
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(0.8); opacity: 1; }
+  100% { transform: translateY(-220px) scale(1.4); opacity: 0; }
+}
+
+.floating-emoji {
+  position: fixed; /* 'fixed' prevents parent container clipping on small screens */
+  bottom: 90px;
+  font-size: 2.25rem;
+  pointer-events: none; /* Prevents emoji from blocking taps on buttons underneath */
+  animation: floatUp 2s ease-out forwards;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+}
